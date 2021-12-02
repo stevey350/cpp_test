@@ -19,5 +19,9 @@ sudo apt-get install libgflags-dev
 ```
 
 ## protocol buffers
-
-
+在ubuntu18.04上直接使用下面命令
+```
+sudo apt-get install libprotobuf-dev			# 安装
+sudo apt-get remove libprotobuf-dev				# 御载
+protoc --version	# 查看安装的版本
+```

@@ -7,6 +7,12 @@ find_package(gflags REQUIRED)
 add_executable(gflags_test "gflags_test.cpp")
 target_link_libraries(gflags_test gflags)
 
+# glog
+# find_package(glog REQUIRED)
+
+add_executable(glog_test glog_test.cpp)
+target_link_libraries(glog_test glog)
+
 # Protocol Buffers
 find_package(Protobuf REQUIRED)
 message(STATUS "DST_DIR=${PROTOBUF_PROTOC_EXECUTABLE}")
