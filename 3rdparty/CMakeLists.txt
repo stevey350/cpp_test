@@ -9,7 +9,6 @@ target_link_libraries(gflags_test gflags)
 
 # glog
 # find_package(glog REQUIRED)
-
 add_executable(glog_test glog_test.cpp)
 target_link_libraries(glog_test glog)
 
