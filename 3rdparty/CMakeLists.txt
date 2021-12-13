@@ -19,3 +19,13 @@ message(STATUS "CMAKE_SOURCE_DIR = ${CMAKE_SOURCE_DIR}")
 execute_process(COMMAND ${PROTOBUF_PROTOC_EXECUTABLE} -I=${CMAKE_SOURCE_DIR}/3rdparty --cpp_out=${CMAKE_SOURCE_DIR}/3rdparty ${CMAKE_SOURCE_DIR}/3rdparty/proto_person.proto)
 add_executable(proto_test "proto_test.cpp" "proto_person.pb.cc")
 target_link_libraries(proto_test protobuf)
+
+# abseil
+find_package(absl REQUIRED)
+add_executable(abseil_test "abseil_test.cpp")
+target_link_libraries(abseil_test absl::strings)
+
+# gtest
+add_executable(gtest_demo "gtest_demo.cpp")
+target_link_libraries(gtest_demo gtest pthread)
+
