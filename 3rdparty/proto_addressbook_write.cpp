@@ -1,37 +1,8 @@
-/**
- * @file proto_test.cpp
- * @brief 官方使用文档：https://developers.google.com/protocol-buffers/docs/overview
- *        生成.h和.cc文件的命令：protoc -I=./ --cpp_out=./ proto_person.proto
- *           就可以实现
- * @author sj.su (sj.su@tungthih.com.cn)
- * @version 1.0
- * @date 2021-11-15
- * 
- * @copyright Copyright (c) 2021 Xiamen Tung Thih Electron CO.,LTD
- * 
- * @par History:
- * <table>
- * <tr>
- *     <th>Date
- *     <th>Version
- *     <th>Author
- *     <th>Description
- * </tr>
- * <tr>
- *     <th>2021-11-15
- *     <th>v0.0.1
- *     <th>sj.su
- *     <th>原型开发
- * </tr>
- * </table>
- */
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "proto_person.pb.h"
-
+#include "proto_addressbook.pb.h"
 using namespace std;
-
 
 // This function fills in a Person message based on user input.
 void PromptForAddress(tutorial::Person* person) {
@@ -77,39 +48,7 @@ void PromptForAddress(tutorial::Person* person) {
   }
 }
 
-// Iterates though all people in the AddressBook and prints info about them.
-void ListPeople(const tutorial::AddressBook& address_book) {
-  for (int i = 0; i < address_book.people_size(); i++) {
-    const tutorial::Person& person = address_book.people(i);
-
-    cout << "Person ID: " << person.id() << endl;
-    cout << "  Name: " << person.name() << endl;
-    if (person.has_email()) {
-      cout << "  E-mail address: " << person.email() << endl;
-    }
-
-    for (int j = 0; j < person.phones_size(); j++) {
-      const tutorial::Person::PhoneNumber& phone_number = person.phones(j);
-
-      switch (phone_number.type()) {
-        case tutorial::Person::MOBILE:
-          cout << "  Mobile phone #: ";
-          break;
-        case tutorial::Person::HOME:
-          cout << "  Home phone #: ";
-          break;
-        case tutorial::Person::WORK:
-          cout << "  Work phone #: ";
-          break;
-      }
-      cout << phone_number.number() << endl;
-    }
-  }
-}
-
-// Main function:  Reads the entire address book from a file,
-//   adds one person based on user input, then writes it back out to the same
-//   file.
+// 命令：./3rdparty/proto_addressbook_write addr_book.txt
 int main(int argc, char* argv[]) {
   // Verify that the version of the library that we linked against is
   // compatible with the version of the headers we compiled against.
@@ -133,12 +72,13 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  ListPeople(address_book);     // 添加前
+  if(!address_book.has_book_name()) {
+      address_book.set_book_name("ssj's address book");
+  }
 
   // Add an address.
   PromptForAddress(address_book.add_people());
 
-  ListPeople(address_book);     // 添加后
   {
     // Write the new address book back to disk.
     fstream output(argv[1], ios::out | ios::trunc | ios::binary);

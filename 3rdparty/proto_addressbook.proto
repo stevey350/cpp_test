@@ -1,0 +1,36 @@
+/**
+ * 每个字段必须使用以下修饰符之一进行注释:
+ * optional: 被该字符修饰的字段，可以被赋值，也可以不被赋值. 如果不被赋值，会有对应的默认值，如
+ *           数字类型为0, 字符串string类型为空字符串，布尔类型为false
+ * repeated: 可视为动态大小的数组
+ * required: 被该字符修饰的字段，必须要被赋值，否则消息将被视为“uninitialized”. 如果没被赋值，在Debug模式下会
+ *           出现Assert错误，以及在序列解析时也会失败；除了这些，其它行为与optional类似
+ */
+
+syntax = "proto2";
+
+package tutorial;       // package declaration, which helps to prevent naming conflicts between different projects
+
+message Person {
+  optional string name = 1;
+  optional int32 id = 2;
+  optional string email = 3;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    optional string number = 1;
+    optional PhoneType type = 2 [default = HOME];
+  }
+
+  repeated PhoneNumber phones = 4;
+}
+
+message AddressBook {
+  repeated Person people = 1;
+  required string book_name = 2;
+}
