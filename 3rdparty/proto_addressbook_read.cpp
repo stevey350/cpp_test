@@ -34,7 +34,7 @@ void ListPeople(const tutorial::AddressBook& address_book) {
   }
 }
 
-// 命令：./3rdparty/proto_addressbook_read addr_book.txt
+// 命令：./3rdparty/proto_addressbook_read addr_book.bin
 int main(int argc, char* argv[]) {
   // Verify that the version of the library that we linked against is
   // compatible with the version of the headers we compiled against.
