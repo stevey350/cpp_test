@@ -41,9 +41,27 @@
  */
 #include <iostream>
 #include <unordered_set>
-#include <unordered_map>
 
 using namespace std;
+
+void unordered_set_basic_test(void)
+{
+    unordered_multiset<string> cities = {
+    // unordered_set<string> cities = {
+        "Quanzhou", "Fuzhou", "Putian", "Xiamen", "Jinjiang"
+    };
+
+    for(const auto &elem: cities) {
+        cout << elem << " ";
+    }
+    cout << endl;
+
+    cities.insert({"Zhangzhou", "Quanzhou"});
+    for(const auto &elem: cities) {
+        cout << elem << " ";
+    }
+    cout << endl;
+}
 
 void unordered_set_test(void)
 {
@@ -58,39 +76,12 @@ void unordered_set_test(void)
     }
 }
 
-/**
- * @brief 保存一系列key/value对，并且可以按key来查询
- */
-void unordered_map_test(void)
-{
-    unordered_map<string, int> my_map;
-    my_map.insert(make_pair("C++", 100));
-    my_map.insert(make_pair("java", 90));
-    my_map["C++"] = 110;
-    cout << "C++ count in my_map: " << my_map.count("C++") << endl;
-
-    // unordered_map<string, int>::iterator it = my_map.find("C++");
-    auto it = my_map.find("C++");
-    cout << "my_map: " << it->first << " " << it->second << endl;
-    my_map.erase("java");
-    if(my_map.find("java") == my_map.end() ) {
-        cout << "could not find java" << endl;
-    }
-
-    // unordered_map重载了[]运算符，我们可以把key放在中括号里，像操作数组一样操作unordered_map
-    my_map["C++"] = 110;
-    my_map["C++"]++;
-    cout << "my_map: " << my_map["C++"] << endl;
-
-}
-
-
 int main(int argc, char **argv)
 {
     cout << "Hello, unordered set" << endl;
 
-    unordered_set_test();
-    unordered_map_test();
+    unordered_set_basic_test();
+    // unordered_set_test();
 
     return 0;
 }

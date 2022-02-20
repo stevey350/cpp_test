@@ -8,9 +8,9 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/result",       // 修改
-            "args": [],
-            "stopAtEntry": false,
+            "program": "${workspaceFolder}/build/3rdparty/proto_addressbook_write",       // 修改
+            "args": ["/home/ssj/test/vscode_test/build/addr_book.bin"],
+            "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
